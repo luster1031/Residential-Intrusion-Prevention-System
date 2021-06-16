@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/static/style2.css" type="text/css">
+
+{% block body %}
+
+{% if session['logged_in'] %}
+<h1>{{session['username']}}님 반갑습니다.</h1>
+
+
+<title>三삼5oh option</title>
+	
+<form action="/option" method="POST">
+
+	<td align="right">침입방지 시스템 ON/OFF :</td>
+
+	<label class="switch"> <input type="checkbox" name = "checkbox"value="ON"> <span class="slider round"></span></label>
+	
+	
+	<br> 옵션 선택 :
+
+	<input type="checkbox" name="shutter" value="down"> 셔터 내리기
+
+	<input type="checkbox" name="window2" value="open"> 창문 잠금
+
+ 
+
+	<br>
+	{% if True %}
+	<p>
+		<img src="{{url_for('static', filename = image_file)}}"/>
+
+	</p>	
+	{% endif %}
+	<br>
+	
+
+	<input type="button" value="신고하기" onclick="location.href='/main/insert'"> 
+
+	<input type="submit" value="설정완료" >
+
+	<input type="button" value="최근경향보기"  onclick="location.href='/main/select'">
+
+    <br>
+    <div>
+       침입 발생 현황 : {{resultData}}<br>
+   </div>
+ 
+
+</form>
+
+{% else %}
+
+ 
+<p>error</p>
+
+
+{% endif %}
+
+{% endblock %}
+
+
